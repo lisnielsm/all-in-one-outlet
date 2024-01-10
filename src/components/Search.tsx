@@ -16,6 +16,7 @@ export const Search = () => {
 		const { search } = e.currentTarget;
 		const newUrlParams = new URLSearchParams(searchParams.toString())
     newUrlParams.set('q', search.value);
+    newUrlParams.set('offset', '0');
     router.push(`/search?${newUrlParams}`);
 	};
 

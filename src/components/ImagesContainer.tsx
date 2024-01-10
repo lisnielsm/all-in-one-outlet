@@ -28,8 +28,8 @@ export const ImagesContainer = ({ product }: Props) => {
 							<div
 								key={picture.id}
 								className={`
-                  flex justify-center items-center w-[50px] h-[50px] cursor-pointer border rounded-sm hover:border-[#39A7FF]
-                  ${picture.id === selectedPicture.id ? "border-[#39A7FF]" : "border-gray-300"}
+                  flex justify-center items-center w-[50px] h-[50px] cursor-pointer border rounded-sm hover:border-[var(--primary-color)]
+                  ${picture.id === selectedPicture.id ? "border-[var(--primary-color)]" : "border-gray-300"}
                 `}
 								onClick={() => handleClick(picture)}
 							>

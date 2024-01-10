@@ -1,17 +1,16 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import Image from "next/image";
 
-
 const Slider = () => {
-  useEffect(() => {
-    const init = async () => {
-      const { Carousel, initTE } = await import("tw-elements");
-      initTE({ Carousel });
-    };
-    init();
-  }, []);
+	useEffect(() => {
+		const init = async () => {
+			const { Carousel, initTE } = await import("tw-elements");
+			initTE({ Carousel });
+		};
+		init();
+	}, []);
 
 	return (
 		<div
@@ -25,36 +24,18 @@ const Slider = () => {
 				className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
 				data-te-carousel-indicators
 			>
-				<button
-					type="button"
-					data-te-target="#carouselExampleCaptions"
-					data-te-slide-to="0"
-					data-te-carousel-active
-					className="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-					aria-current="true"
-					aria-label="Slide 1"
-				></button>
-				<button
-					type="button"
-					data-te-target="#carouselExampleCaptions"
-					data-te-slide-to="1"
-					className="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-					aria-label="Slide 2"
-				></button>
-				<button
-					type="button"
-					data-te-target="#carouselExampleCaptions"
-					data-te-slide-to="2"
-					className="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-					aria-label="Slide 3"
-				></button>
-        <button
-					type="button"
-					data-te-target="#carouselExampleCaptions"
-					data-te-slide-to="3"
-					className="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-					aria-label="Slide 4"
-				></button>
+				{[1, 2, 3, 4, 5, 6, 7].map((position) => (
+					<button
+						key={position}
+						type="button"
+						data-te-target="#carouselExampleCaptions"
+						data-te-slide-to={`${position - 1}`}
+						data-te-carousel-active
+						className="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+						aria-current={position === 1 ? "true" : "false"}
+						aria-label={`Slide ${position}`}
+					></button>
+				))}
 			</div>
 
 			{/* Carousel items */}
@@ -68,87 +49,34 @@ const Slider = () => {
 					<Image
 						src="/banner1.webp"
 						className="block w-full"
-						alt="..."
-            width={1200}
-            height={350}
-            priority
+						alt="Promotion #1"
+						width={1200}
+						height={350}
+						priority
 					/>
-					{/* <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-						<h5 className="text-xl">First slide label</h5>
-						<p>
-							Some representative placeholder content for the
-							first slide.
-						</p>
-					</div> */}
 				</div>
 
-				<div
-					className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-					data-te-carousel-item
-					style={{ backfaceVisibility: "hidden" }}
-				>
-					<Image
-						src="/banner2.webp"
-						className="block w-full"
-						alt="..."
-            width={1200}
-            height={350}
-					/>
-					{/* <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-						<h5 className="text-xl">Second slide label</h5>
-						<p>
-							Some representative placeholder content for the
-							second slide.
-						</p>
-					</div> */}
-				</div>
-
-				<div
-					className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-					data-te-carousel-item
-					style={{ backfaceVisibility: "hidden" }}
-				>
-					<Image
-						src="/banner3.webp"
-						className="block w-full"
-						alt="..."
-            width={1200}
-            height={350}
-					/>
-					{/* <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-						<h5 className="text-xl">Third slide label</h5>
-						<p>
-							Some representative placeholder content for the
-							third slide.
-						</p>
-					</div> */}
-				</div>
-
-				<div
-					className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-					data-te-carousel-item
-					style={{ backfaceVisibility: "hidden" }}
-				>
-					<Image
-						src="/banner4.webp"
-						className="block w-full"
-						alt="..."
-            width={1200}
-            height={350}
-					/>
-					{/* <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-						<h5 className="text-xl">Third slide label</h5>
-						<p>
-							Some representative placeholder content for the
-							third slide.
-						</p>
-					</div> */}
-				</div>
+				{[2, 3, 4, 5, 6, 7].map((position) => (
+					<div
+						key={position}
+						className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+						data-te-carousel-item
+						style={{ backfaceVisibility: "hidden" }}
+					>
+						<Image
+							src={`/banner${position}.webp`}
+							className="block w-full"
+							alt={`Promotion #${position}`}
+							width={1200}
+							height={350}
+						/>
+					</div>
+				))}
 			</div>
 
 			{/* Carousel controls - prev item */}
 			<button
-				className="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+				className="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
 				type="button"
 				data-te-target="#carouselExampleCaptions"
 				data-te-slide="prev"
@@ -176,7 +104,7 @@ const Slider = () => {
 
 			{/* Carousel controls - next item */}
 			<button
-				className="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+				className="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
 				type="button"
 				data-te-target="#carouselExampleCaptions"
 				data-te-slide="next"

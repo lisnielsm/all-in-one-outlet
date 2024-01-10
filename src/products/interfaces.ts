@@ -190,3 +190,5 @@ export const PRODUCT_STATE = {
   new: 'New',
   used: 'Used',
 }
+
+export const ITEMS_PER_PAGE = 24;

@@ -124,7 +124,7 @@ export const Modal = () => {
 									)}
 								</p>
 
-								<button className="block w-full py-4 font-bold text-center text-white uppercase bg-[#39A7FF] rounded-md hover:bg-sky-950 mt-7">
+								<button className="block w-full py-4 font-bold text-center text-white uppercase bg-[var(--primary-color)] rounded-md hover:bg-sky-950 mt-7">
 									Add to Cart
 								</button>
 							</div>
