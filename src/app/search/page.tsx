@@ -1,5 +1,5 @@
 import { ProductsGrid } from "@/components";
-import { Product, ProductResponse } from "@/products";
+import { GeneralProduct, ProductResponse } from "@/products";
 
 interface Props {
 	searchParams: { [key: string]: string };
@@ -9,7 +9,7 @@ const getProducts = async (
 	query: string,
 	offset = "0",
 	limit = "5"
-): Promise<Product[]> => {
+): Promise<GeneralProduct[]> => {
 	const url = `https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=${limit}&offset=${offset}`;
 	const response = await fetch(url);
 	const data: ProductResponse = await response.json();
@@ -20,8 +20,8 @@ export default async function SearchPage({ searchParams }: Props) {
 	console.log("********", searchParams);
 	const products = await getProducts(
 		searchParams["q"],
-		searchParams["limit"],
-		searchParams["offset"]
+		searchParams["offset"],
+		searchParams["limit"]
 	);
 	return (
 		<section>
