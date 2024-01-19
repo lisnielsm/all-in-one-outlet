@@ -28,8 +28,6 @@ const getProducts = async (params: {
 		query += `&limit=${ITEMS_PER_PAGE}`;
 	}
 
-	console.log('___________', query)
-
 	const url = `https://api.mercadolibre.com/sites/MLU/search?${query}`;
 	const response = await fetch(url);
 	const data: ProductResponse = await response.json();
@@ -40,12 +38,12 @@ export default async function SearchPage({ searchParams }: Props) {
 	const productResponse = await getProducts(searchParams);
 
 	return (
-		<section>
+		<article>
 			<FilterHeader />
 
-			<div className="px-4">
+			<section className="px-4">
 				<Search productResponse={productResponse} />
-			</div>
-		</section>
+			</section>
+		</article>
 	);
 }

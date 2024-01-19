@@ -12,6 +12,7 @@ export { Price } from './products/Price';
 export { ProductCard } from './products/ProductCard';
 export { ProductImage } from './products/ProductImage';
 export { ProductsGrid } from './products/ProductsGrid';
+export { ProductTable } from './products/ProductTable';
 
 export { CartIcon } from './ui/CartIcon';
 export { Drawer } from './ui/Drawer';
@@ -19,4 +20,6 @@ export { Header } from './ui/Header';
 export { Pagination } from './ui/Pagination';
 export { Search } from './ui/Search';
 export { SearchInput } from './ui/SearchInput';
+export { Alert } from './ui/Alert';
+export { Footer } from './ui/Footer';
 

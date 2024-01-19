@@ -1,27 +1,42 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
 
-import { ProductResponse } from "@/products";
+import { ProductError, ProductResponse } from "@/products";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setProductList } from "@/store/ui/uiSlice";
+import { setProductList, setToast } from "@/store/ui/uiSlice";
 import { FilterSidebar, Pagination, ProductsGrid } from "..";
+import { Alert } from "./Alert";
 
 interface Props {
-	productResponse: ProductResponse;
+	productResponse: ProductResponse | ProductError;
 }
 
 export const Search = ({ productResponse }: Props) => {
 	const dispatch = useAppDispatch();
-	const isOpenModal = useAppSelector((state) => state.ui.isOpenModal);
+	const isOpenModal: boolean = useAppSelector((state) => state.ui.isOpenModal);
 
-	console.log({productResponse})
+	useLayoutEffect(() => {
+		if ((productResponse as ProductError).message !== undefined) {
+			dispatch(setToast({
+				isError: true,
+				isShow: true,
+				message: "An error occurs when fetching the products",
+			}));
 
-	useEffect(() => {
-		dispatch(setProductList(productResponse));
+			setTimeout(() => {
+				dispatch(setToast({
+					isError: false,
+					isShow: false,
+					message: "",
+				}));
+			}, 3000);
+		} else {
+			dispatch(setProductList(productResponse as ProductResponse));
+		}
 	}, [productResponse]);
 
 	useEffect(() => {
@@ -32,11 +47,13 @@ export const Search = ({ productResponse }: Props) => {
 			document.body.classList.remove("overflow-y-hidden");
 		}
 	}, [isOpenModal]);
-  
-  return (
-		<>
-			{productResponse.results.length > 0 ? (
-				<div className="flex flex-nowrap gap-3">
+
+	return (
+		<div>
+			<Alert />
+
+			{(productResponse as ProductResponse).results?.length > 0 ? (
+				<div className="flex flex-nowrap gap-3 mb-3">
 					<FilterSidebar />
 
 					<div className="w-full">
@@ -63,6 +80,6 @@ export const Search = ({ productResponse }: Props) => {
 					</Link>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };

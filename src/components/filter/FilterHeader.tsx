@@ -21,7 +21,7 @@ export const FilterHeader = () => {
 	}, []);
 
 	return (
-		<article>
+		<section>
 			<header className="flex justify-between items-center w-full py-2 px-4 shadow-md border-b border-gray-400 mb-2">
 				{products.length === 0 ? (
 					<p className="hidden sm:inline-block">
@@ -71,6 +71,6 @@ export const FilterHeader = () => {
 					</>
 				) : null}
 			</header>
-		</article>
+		</section>
 	);
 };

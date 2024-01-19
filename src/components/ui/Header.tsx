@@ -19,7 +19,7 @@ export const Header = () => {
 			<div className="flex justify-between items-center gap-4 sm:gap-10 px-4 py-2 mx-auto">
 				<Link href="/">
 					<span
-						className={`${dancingScript.className} text-4xl whitespace-nowrap`}
+						className={`${dancingScript.className} text-2xl sm:text-4xl whitespace-nowrap`}
 					>
 						All-in-One
 					</span>
@@ -30,7 +30,7 @@ export const Header = () => {
 				</div>
 
 				<div className="flex items-center gap-5">
-					<CartIcon productCount={5} />
+					<CartIcon />
 
 					<div className="flex items-center sm:hidden">
 						<button

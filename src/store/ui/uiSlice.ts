@@ -1,15 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductResponse } from '../../products';
+import { Alert, Product, ProductResponse } from '../../products';
 interface UIState {
   isOpenModal: boolean;
   modalId: string;
   productList: ProductResponse | null;
+  toast: Alert;
+  cartProducts: Product[];
 }
 
 const initialState: UIState = {
   isOpenModal: false,
   modalId: '',
   productList: null,
+  toast: {
+    isShow: false,
+    isError: false,
+    message: "",
+  },
+  cartProducts: [],
 }
 
 const uiSlice = createSlice({
@@ -25,9 +33,21 @@ const uiSlice = createSlice({
     setProductList(state, action: PayloadAction<ProductResponse | null>) {
       state.productList = action.payload;
     },
+    setToast(state, action: PayloadAction<Alert>) {
+      state.toast = action.payload;
+    },
+    addProductToCart(state, action: PayloadAction<Product>) {
+      state.cartProducts = [...state.cartProducts, action.payload];
+    }
   }
 });
 
-export const { setModalId, setOpenModal, setProductList } = uiSlice.actions;
+export const {
+  setModalId,
+  setOpenModal,
+  setProductList,
+  setToast,
+  addProductToCart,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

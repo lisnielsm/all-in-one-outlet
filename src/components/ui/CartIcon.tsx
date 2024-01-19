@@ -1,16 +1,14 @@
-import React from 'react';
+"use client";
 
-interface Props {
-  productCount?: number;
-}
+import { useAppSelector } from "@/store";
 
-export const CartIcon = ({ productCount = 0}: Props) => {
-
+export const CartIcon = () => {
+	const cartProducts = useAppSelector((state) => state.ui.cartProducts);
 
 	return (
 		<button
 			type="button"
-			className="relative inline-flex items-center p-3 text-sm font-medium text-center bg-transparent rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300"
+			className="relative inline-flex items-center p-3 text-sm font-medium text-center bg-transparent rounded-lg focus:outline-none transition duration-150 ease-in-out"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -27,11 +25,11 @@ export const CartIcon = ({ productCount = 0}: Props) => {
 				/>
 			</svg>
 			<span className="sr-only">Notifications</span>
-			{ productCount > 0 ? (
-        <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-1 border-white rounded-full -top-1 -end-1 dark:border-gray-600">
-          {productCount}
-        </div>
-      ) : null }
+			{cartProducts.length > 0 ? (
+				<div className="absolute inline-flex items-center z-30 justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-1 border-white rounded-full -top-1 -end-1 dark:border-gray-600">
+					{cartProducts.length}
+				</div>
+			) : null}
 		</button>
 	);
 };

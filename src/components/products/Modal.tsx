@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 import { Description, PRODUCT_STATE, Product } from "@/products";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setModalId, setOpenModal } from "@/store/ui/uiSlice";
-import { ImagesContainer, Price } from "..";
+import { addProductToCart, setModalId, setOpenModal, setToast } from "@/store/ui/uiSlice";
+import { ImagesContainer, Price, ProductTable } from "..";
 
 export const Modal = () => {
 	const dispatch = useAppDispatch();
@@ -20,7 +20,6 @@ export const Modal = () => {
 				const currentProduct: Product = await fetch(
 					`https://api.mercadolibre.com/items/${modalId}`
 				).then((res) => res.json());
-				console.log("********* product", currentProduct);
 				setProduct(currentProduct);
 			};
 
@@ -28,7 +27,6 @@ export const Modal = () => {
 				const description: Description = await fetch(
 					`https://api.mercadolibre.com/items/${modalId}/description`
 				).then((res) => res.json());
-				console.log("********* description", description);
 				setDescription(description.plain_text);
 			};
 
@@ -43,6 +41,26 @@ export const Modal = () => {
 		setDescription("");
 		setProduct(null);
 	};
+
+	const handleAddToCart = () => {
+		dispatch(addProductToCart(product!));
+	
+		onClose();
+
+		dispatch(setToast({
+			isError: false,
+			isShow: true,
+			message: "A product was added to you Cart successfully",
+		}));
+
+		setTimeout(() => {
+			dispatch(setToast({
+				isError: false,
+				isShow: false,
+				message: "",
+			}));
+		}, 3000);
+	}
 
 	if (!product && !description) return null;
 
@@ -112,11 +130,16 @@ export const Modal = () => {
 									currencyId={product.currency_id}
 								/>
 
-								<button className="block w-full py-4 px-6 font-bold text-center text-white uppercase bg-[var(--primary-color)] rounded-md hover:bg-sky-950 mt-7">
+								<button
+									className="block w-full py-4 px-6 font-bold text-center text-white uppercase bg-[var(--primary-color)] rounded-md hover:bg-sky-950 mt-7 active:bg-[var(--primary-color)]"
+									onClick={handleAddToCart}	
+								>
 									Add to Cart
 								</button>
 							</div>
 						</div>
+
+						<ProductTable currentProduct={product} />
 
 						<h4 className="text-xl mb-2">Description</h4>
 

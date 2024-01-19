@@ -1,7 +1,7 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header, Drawer, FilterDrawer } from "@/components";
+import { Header, Drawer, FilterDrawer, Footer } from "@/components";
 import { Providers } from "@/store/Providers";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className="min-h-screen bg-white">
 
-				<main className="w-full pb-8 pt-16">
+				<main className="w-full pt-16">
 					<Providers>
 						<Header />
 
@@ -27,6 +27,8 @@ export default function RootLayout({
 						<FilterDrawer />
 						
 						{children}
+
+						<Footer />
 					</Providers>
 				</main>
 
