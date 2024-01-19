@@ -1,5 +1,7 @@
 "use client";
 
+import React from 'react';
+
 import { FormEventHandler } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -7,28 +9,32 @@ interface SearchForm extends HTMLFormElement {
 	search: HTMLInputElement;
 }
 
-export const Search = () => {
+export const SearchInput = () => {
 	const router = useRouter();
   const searchParams = useSearchParams();
 
 	const handleSubmit: FormEventHandler<SearchForm> = (e) => {
 		e.preventDefault(); // stop refresh
 		const { search } = e.currentTarget;
-		const newUrlParams = new URLSearchParams(searchParams.toString())
+		const newUrlParams = new URLSearchParams()
     newUrlParams.set('q', search.value);
     newUrlParams.set('offset', '0');
     router.push(`/search?${newUrlParams}`);
 	};
 
 	return (
-		<form className="relative w-full mx-auto" onSubmit={handleSubmit}>
+		<form className="max-w-[900px] relative w-full mx-auto" onSubmit={handleSubmit}>
 			<input
 				className="w-full py-2 pl-4 pr-16 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 				name="search"
 				type="search"
 				placeholder="Search"
+				defaultValue={searchParams.get("q") || ''}
 			/>
-			<button className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 border-l border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+			<button
+				className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 border-l border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+				data-te-offcanvas-dismiss	
+			>
 				<svg
 					className="h-5 w-5"
 					fill="currentColor"

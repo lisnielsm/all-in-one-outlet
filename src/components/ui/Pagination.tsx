@@ -2,15 +2,13 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ITEMS_PER_PAGE } from "@/products";
+import { useAppSelector } from "@/store";
 
-interface Props {
-	totalCount: number;
-}
-
-export const Pagination = ({ totalCount }: Props) => {
+export const Pagination = () => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const totalCount = useAppSelector(state => state.ui.productList?.paging.total) || 0;
 
 	const current = new URLSearchParams(Array.from(searchParams.entries()));
 	const offset = current.get("offset");
@@ -69,7 +67,7 @@ export const Pagination = ({ totalCount }: Props) => {
 								d="M15.75 19.5L8.25 12l7.5-7.5"
 							/>
 						</svg>
-						Previous
+						<span className="hidden sm:inline">Previous</span>
 					</button>
 				) : null}
 
@@ -87,7 +85,7 @@ export const Pagination = ({ totalCount }: Props) => {
 						className="flex items-center gap-2 flex-nowrap p-2 pl-3 bg-white rounded-md border border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-gray-100"
 						onClick={onHandleNext}
 					>
-						Next
+						<span className="hidden sm:inline">Next</span>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"

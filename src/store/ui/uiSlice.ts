@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GeneralProduct } from '../../products/interfaces';
-
+import { ProductResponse } from '../../products';
 interface UIState {
-  open: boolean;
+  isOpenModal: boolean;
   modalId: string;
-  currentProduct: GeneralProduct | null;
+  productList: ProductResponse | null;
 }
 
 const initialState: UIState = {
-  open: false,
+  isOpenModal: false,
   modalId: '',
-  currentProduct: null,
+  productList: null,
 }
 
 const uiSlice = createSlice({
@@ -18,14 +17,17 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     setOpenModal(state, action: PayloadAction<boolean>) {
-      state.open = action.payload;
+      state.isOpenModal = action.payload;
     },
     setModalId(state, action: PayloadAction<string>) {
       state.modalId = action.payload;
     },
+    setProductList(state, action: PayloadAction<ProductResponse | null>) {
+      state.productList = action.payload;
+    },
   }
 });
 
-export const { setModalId, setOpenModal } = uiSlice.actions;
+export const { setModalId, setOpenModal, setProductList } = uiSlice.actions;
 
 export default uiSlice.reducer;

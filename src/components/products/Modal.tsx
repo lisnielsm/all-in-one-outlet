@@ -1,17 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 import { Description, PRODUCT_STATE, Product } from "@/products";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setModalId, setOpenModal } from "@/store/ui/uiSlice";
-import { getFormatPrice } from "@/utils";
-import { ImagesContainer } from ".";
+import { ImagesContainer, Price } from "..";
 
 export const Modal = () => {
 	const dispatch = useAppDispatch();
-	const open = useAppSelector((state) => state.ui.open);
+	const isOpenModal = useAppSelector((state) => state.ui.isOpenModal);
 	const modalId = useAppSelector((state) => state.ui.modalId);
 	const [description, setDescription] = useState("");
 	const [product, setProduct] = useState<Product | null>(null);
@@ -54,7 +52,7 @@ export const Modal = () => {
 			onClick={onClose}
 			className={`
         fixed inset-0 flex justify-center items-center transition-colors z-50
-        ${open ? "visible bg-black/50" : "invisible"}
+        ${isOpenModal ? "visible bg-black/50" : "invisible"}
       `}
 		>
 			{/* modal */}
@@ -63,7 +61,7 @@ export const Modal = () => {
 				className={`
           bg-white rounded-xl shadow p-6 transition-all w-full max-w-[700px]
 					max-h-[calc(100vh-40px)] overflow-auto mx-2
-          ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
+          ${isOpenModal ? "scale-100 opacity-100" : "scale-125 opacity-0"}
         `}
 			>
 				{/* Modal header */}
@@ -108,23 +106,13 @@ export const Modal = () => {
 							<div className="flex flex-col items-start justify-start">
 								<p className="text-xs text-gray-400 mb-2">{PRODUCT_STATE[product.condition as keyof typeof PRODUCT_STATE]}</p>
 								
-								{product.original_price &&
-								product.price !== product.original_price ? (
-									<p className="text-sm line-through text-red-400">
-										{getFormatPrice(
-											product.original_price ?? 0,
-											product.currency_id
-										)}
-									</p>
-								) : null}
-								<p className="text-2xl font-bold text-gray-900">
-									{getFormatPrice(
-										product.price,
-										product.currency_id
-									)}
-								</p>
+								<Price
+									price={product.price}
+									originalPrice={product.original_price}
+									currencyId={product.currency_id}
+								/>
 
-								<button className="block w-full py-4 font-bold text-center text-white uppercase bg-[var(--primary-color)] rounded-md hover:bg-sky-950 mt-7">
+								<button className="block w-full py-4 px-6 font-bold text-center text-white uppercase bg-[var(--primary-color)] rounded-md hover:bg-sky-950 mt-7">
 									Add to Cart
 								</button>
 							</div>

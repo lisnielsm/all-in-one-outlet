@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 const Slider = () => {
@@ -41,7 +41,7 @@ const Slider = () => {
 			{/* Carousel items */}
 			<div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
 				<div
-					className="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+					className="relative float-left -mr-[100%] max-h-[350px] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
 					data-te-carousel-active
 					data-te-carousel-item
 					style={{ backfaceVisibility: "hidden" }}
@@ -59,7 +59,7 @@ const Slider = () => {
 				{[2, 3, 4, 5, 6, 7].map((position) => (
 					<div
 						key={position}
-						className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+						className="relative float-left -mr-[100%] max-h-[350px] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
 						data-te-carousel-item
 						style={{ backfaceVisibility: "hidden" }}
 					>
