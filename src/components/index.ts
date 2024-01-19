@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 export { FilterDrawer } from './filter/FilterDrawer';
 export { FilterHeader } from './filter/FilterHeader';
@@ -22,4 +22,3 @@ export { Search } from './ui/Search';
 export { SearchInput } from './ui/SearchInput';
 export { Alert } from './ui/Alert';
 export { Footer } from './ui/Footer';
-

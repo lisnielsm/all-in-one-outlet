@@ -1,6 +1,6 @@
 export default function SearchLoadingPage() {
-	return (
-		<main className="absolute inset-0 flex justify-center items-center">
+  return (
+    <main className="absolute inset-0 flex justify-center items-center">
       <div
         className="inline-block h-10 w-10 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-[var(--primary-color)] opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
         role="status"
@@ -10,5 +10,5 @@ export default function SearchLoadingPage() {
         </span>
       </div>
     </main>
-	);
+  );
 }

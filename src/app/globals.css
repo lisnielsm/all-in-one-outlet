@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #39A7FF;
+  --primary-color: #39a7ff;
   --secondary-color: bg-sky-950;
-  --terciary-color: #FFEED9;
+  --terciary-color: #ffeed9;
 }

@@ -15,10 +15,10 @@ const initialState: UIState = {
   toast: {
     isShow: false,
     isError: false,
-    message: "",
+    message: '',
   },
   cartProducts: [],
-}
+};
 
 const uiSlice = createSlice({
   name: 'ui',
@@ -38,16 +38,11 @@ const uiSlice = createSlice({
     },
     addProductToCart(state, action: PayloadAction<Product>) {
       state.cartProducts = [...state.cartProducts, action.payload];
-    }
-  }
+    },
+  },
 });
 
-export const {
-  setModalId,
-  setOpenModal,
-  setProductList,
-  setToast,
-  addProductToCart,
-} = uiSlice.actions;
+export const { setModalId, setOpenModal, setProductList, setToast, addProductToCart } =
+  uiSlice.actions;
 
 export default uiSlice.reducer;

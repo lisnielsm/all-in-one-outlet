@@ -1,38 +1,31 @@
-
-import type { Metadata } from "next";
-import "./globals.css";
-import { Header, Drawer, FilterDrawer, Footer } from "@/components";
-import { Providers } from "@/store/Providers";
+import type { Metadata } from 'next';
+import './globals.css';
+import { Header, Drawer, FilterDrawer, Footer } from '@/components';
+import { Providers } from '@/store/Providers';
 
 export const metadata: Metadata = {
-	title: "All-in-One",
-	description: "Best e-commerce in the world",
+  title: 'All-in-One',
+  description: 'Best e-commerce in the world',
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-	return (
-		<html lang="en">
-			<body className="min-h-screen bg-white">
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="min-h-screen bg-white">
+        <main className="w-full pt-16">
+          <Providers>
+            <Header />
 
-				<main className="w-full pt-16">
-					<Providers>
-						<Header />
+            <Drawer />
 
-						<Drawer />
+            <FilterDrawer />
 
-						<FilterDrawer />
-						
-						{children}
+            {children}
 
-						<Footer />
-					</Providers>
-				</main>
-
-			</body>
-		</html>
-	);
+            <Footer />
+          </Providers>
+        </main>
+      </body>
+    </html>
+  );
 }
