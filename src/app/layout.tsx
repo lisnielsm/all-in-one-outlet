@@ -4,28 +4,28 @@ import { Header, Drawer, FilterDrawer, Footer } from '@/components';
 import { Providers } from '@/store/Providers';
 
 export const metadata: Metadata = {
-  title: 'All-in-One',
-  description: 'Best e-commerce in the world',
+	title: 'All-in-One',
+	description: 'Best e-commerce in the world',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className="min-h-screen bg-white">
-        <main className="w-full pt-16">
-          <Providers>
-            <Header />
+	return (
+		<html lang="en">
+			<body className="min-h-screen bg-white">
+				<main className="w-full pt-16 min-h-[calc(100vh-184px)] sm:min-h-[calc(100vh-104px)] xl:min-h-[calc(100vh-64px)]">
+					<Providers>
+						<Header />
 
-            <Drawer />
+						<Drawer />
 
-            <FilterDrawer />
+						<FilterDrawer />
 
-            {children}
+						{children}
+					</Providers>
+				</main>
 
-            <Footer />
-          </Providers>
-        </main>
-      </body>
-    </html>
-  );
+				<Footer />
+			</body>
+		</html>
+	);
 }
